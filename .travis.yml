@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Teu3/sViAya12r0sTYCpu6OExngd1S9Hdp1dojulTS6WmxqjaP7MC+GoVB4/IsSN0WFpyxmKIaqOe4TD8YXOlDe8g1sUi1GmFIMzYAcXUOaIn9jMCx1nccYmtJmFNtKe5GODi5o2IyDEMSkBgPOnLqBDKd/Jdvq18RQS4VKN4bj4qYGK9pLbxjIGA3OdRwTIYGxms/VnUmwcwWbrZ7vWOJkYGdUyqDORPW5kNoGO/rE5OFERWc6Hen1YAH3VczLUZJKBfVS5Rgf0Tni7C0wCeQ5byczVqNECVh9oo8BNukr+cLhk8w2F9xnds95Ti5dJHxD2duy0zF72Foit3WaLUs0ny7omEpVXrnS4+xrqARamn+3fl593aFvsRON5F5+jRe6rGEvAO3dDFwAI3Qcyn8StGOxQm+MImsAI7sKWSxRpY9uh+r25S+0j1rnCo6/e5PCZKDyHvPHnAg2I/LQ1RPPlG8RMANM7c9bje+3//6ai3Xy1S4FYiGOobwM4XYPWa40nHvxSUZ8A++FxGh2cvR3XTUlUUzIdRQSfP+ykx47Qbe95MoOmGneYQX7GsHFN2YjI0yJ/QwiYZBG7f45NkgdPWX5wvRCQ1TCFDNKtSqFxzK7OpkLByA3OtwWC/oJom50VyosiLTqTwejV6CZ5wTS0jo59g6PBXDiMO20Pxdc=
+  app: rocky-coast-40363
+  on:
+    repo: jasoncristobal/capstone-node
