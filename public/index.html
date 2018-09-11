@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Home page</title>
-</head>
-<body>
-	<header><h1>Title</h1></header>
-	<h2>Subtitle</h2>
-	<form id="login-form">
-		<input type="text" class="user" name="username">
-		<input type="password" class="pw" name="password">
-		<button>Login</button>
-	</form>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
-<script src="index.js" type="text/javascript"></script>
+	<head>
+		<title>Home page</title>
+	</head>
+	<body>
+		<header role="banner">
+			<h1>Title</h1>
+			<h2>Subtitle</h2>
+		</header>
+		<main role="main">
+			<form role="form" id="login-form">
+				<input type="text" class="user" placeholder="Enter username" name="username">
+				<input type="password" class="pw" placeholder="Enter password" name="password">
+				<button>Login</button>
+			</form>
+			<a href="#" id="registerLink">Create Account</a>
+		</main>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src="index.js" type="text/javascript"></script>
 </html>

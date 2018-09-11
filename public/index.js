@@ -1,72 +1,14 @@
-acts = [ 
-	{
-		"name": "item1",
-		"date": "text",
-		"location": "place"
-	},
- 	{
- 		"name": "item2",
-		"date": "text",
-		"location": "place"
- 	},
- 	{
-		"name": "item3",
-		"date": "text",
-		"location": "place"
-	},
- 	{
- 		"name": "item4",
-		"date": "text",
-		"location": "place"
- 	},
- 	{
-		"name": "item5",
-		"date": "text",
-		"location": "place"
-	},
- 	{
- 		"name": "item6",
-		"date": "text",
-		"location": "place"
- 	} 
-]
-
-$(function() { 
-	$('#login-form').submit(event=>{
-		console.log('Hello'); 
+$('#login-form').submit(event=>{
+    console.log('Login button clicked');
     event.preventDefault();
-		const username = $(event.currentTarget).find('.user').val();// username input
-    console.log(username);
-		const password = $(event.currentTarget).find('.pw').val();// password input
-    console.log(password);
-		login(username, password);
-  	window.location="dashboard.html"
-	  displayItems();
-  })
+    const username = $(event.currentTarget).find('.user').val();// username input
+    console.log('Check if username exists. Yes, it does');
+    const password = $(event.currentTarget).find('.pw').val();// password input
+    console.log('Check if password is correct. Yes, it is');
+    window.location="dashboard.html";
 })
 
-$(function() { 
-  $('#create-item').submit(event=>{
-    console.log('Hello create'); 
-    event.preventDefault();
-    window.location="index.html"
-  })
+$('#registerLink').click(event=>{
+    window.location="register.html";
+    // if username exists, return error msg "already exists"
 })
-
-function login(username, password) {
-	return {
-		username,
-		token: "123"
-	}
-}
-
-function displayItems() {
-  console.log('Hello displayItems');
-  $('.append-results').append(`
-    <div>
-      <div>
-      ${acts[0]}
-      </div>
-    </div>
-  `);
-}
