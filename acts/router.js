@@ -1,5 +1,6 @@
 'use strict';
 const express = require('express');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const {Act} = require('./models');
@@ -7,7 +8,9 @@ const {Act} = require('./models');
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
+router.use(jwtAuth);
 
 router.get('/', (req, res) => {
   Act
@@ -33,7 +36,8 @@ router.get('/:id', (req, res) => {
         title: act.title,
         date: act.date,
         location: act.location,
-        description: act.description
+        description: act.description,
+        kindnessRating: act.kindnessRating
       });
     })
     .catch(err => {
@@ -45,7 +49,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   console.log(req.body);
-  const requiredFields = ['title', 'date', 'location', 'description'];
+  const requiredFields = ['title', 'date', 'location', 'description', 'kindnessRating'];
   requiredFields.forEach(field => {
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
@@ -59,7 +63,8 @@ router.post('/', (req, res) => {
         title: req.body.title,
         date: req.body.date,
         location: req.body.location,
-        description: req.body.description
+        description: req.body.description,
+        kindnessRating: req.body.kindnessRating
       })
       .then(act => res.status(201).json(
         act.serialize()
@@ -79,7 +84,7 @@ router.put('/:id', (req, res) => {
   }
 
   const updated = {};
-  const updateableFields = ['title', 'date', 'location', 'description'];
+  const updateableFields = ['title', 'date', 'location', 'description', 'kindnessRating'];
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
@@ -94,6 +99,7 @@ router.put('/:id', (req, res) => {
       date: updatedAct.date,
       location: updatedAct.location,
       description: updatedAct.description,
+      kindnessRating: updatedAct.kindnessRating
     }))
     .catch(err => res.status(500).json({ message: err }));
 });

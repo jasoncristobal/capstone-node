@@ -1,0 +1,100 @@
+* {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  padding-top: 90px;
+  background-color: #0071bc;
+}
+
+body, .tagline {
+  font-size: 20px;
+}
+
+main, h1 {
+  color: white;
+}
+
+h1, .tagline {
+  font-family: 'Kalam', cursive;
+  
+}
+
+#registerLink {
+  font-size: 15px;
+}
+
+.tagline {
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 102px;
+  line-height: 80%;
+  -webkit-margin-after: 0em;
+}
+
+fieldset {
+  border-width: 0px;
+  padding: 0px 0px 1em 0px;
+}
+
+input {
+  width: 180px;
+}
+
+.button {
+  background-color: #008deb;
+  border: 0;
+  color: white;
+  padding: 10px 15px 15px 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #29abe2;
+}
+
+form {
+  margin: 0 auto;
+}
+
+a.dark:link, a.dark:visited {
+  color: white;
+}
+
+a.dark:hover {
+  color: lightgray;
+}
+
+/* Responsive */
+@media only screen and (min-width: 650px) {
+
+  body {
+    background: 
+    linear-gradient(
+      rgba(0, 113, 188, 0.65), 
+      rgba(0, 113, 188, 0.65) 
+    ),
+    url(https://wecleantoperfection.com/wp-content/uploads/2018/02/crowd-of-people-walking-on-city-street-sidewalk-4k-slow-motion_eyvkajbe__F0000.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+  }
+
+  h1 {
+    font-size: 110px;
+  }
+
+  .tagline {
+    font-size: 22px;
+  }
+
+}

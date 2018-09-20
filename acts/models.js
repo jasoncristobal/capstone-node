@@ -20,6 +20,10 @@ const ActSchema = mongoose.Schema({
     description: {
     type: String,
     required: true
+  },
+    kindnessRating: {
+    type: Number,
+    required: true
   }
 });
 
@@ -29,7 +33,8 @@ ActSchema.methods.serialize = function() {
     title: this.title,
     date: this.date,
     location: this.location,
-    description: this.description
+    description: this.description,
+    kindnessRating: this.kindnessRating
   };
 };
 
