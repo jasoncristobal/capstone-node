@@ -5,29 +5,30 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const ActSchema = mongoose.Schema({
-    title: {
+  title: {
     type: String,
     required: true
   },
-    date: {
+  date: {
+    type: Date,
+    required: true
+  },
+  location: {
     type: String,
     required: true
   },
-    location: {
+  description: {
     type: String,
     required: true
   },
-    description: {
-    type: String,
-    required: true
-  },
-    kindnessRating: {
+  kindnessRating: {
     type: Number,
     required: true
-  }
+  },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: false, required: [false, 'No user id found'] },
 });
 
-ActSchema.methods.serialize = function() {
+ActSchema.methods.serialize = function () {
   return {
     id: this._id,
     title: this.title,
@@ -40,4 +41,4 @@ ActSchema.methods.serialize = function() {
 
 const Act = mongoose.model('Act', ActSchema);
 
-module.exports = {Act};
+module.exports = { Act };

@@ -13,8 +13,11 @@ const jwtAuth = passport.authenticate('jwt', {session: false});
 router.use(jwtAuth);
 
 router.get('/', (req, res) => {
+  console.log(req.user)
   Act
-    .find()
+    .find({
+      user: req.user.id
+    })
     .then(acts => {
       res.json(acts.map(act => {
         return act.serialize();
@@ -29,7 +32,10 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   Act
-    .findById(req.params.id)
+    .findOne({
+      _id: req.params.id,
+      user: req.user.id
+    })
     .then(act => {
       res.json({
         id: act._id,
@@ -64,7 +70,8 @@ router.post('/', (req, res) => {
         date: req.body.date,
         location: req.body.location,
         description: req.body.description,
-        kindnessRating: req.body.kindnessRating
+        kindnessRating: req.body.kindnessRating,
+        user: req.user.id
       })
       .then(act => res.status(201).json(
         act.serialize()
@@ -92,7 +99,12 @@ router.put('/:id', (req, res) => {
   });
 
   Act
-    .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
+    .findOneAndUpdate({
+      _id: req.params.id,
+      user: req.user.id
+    }, 
+      { $set: updated }, 
+      { new: true })
     .then(updatedAct => res.status(200).json({
       id: updatedAct.id,
       title: updatedAct.title,
@@ -106,8 +118,12 @@ router.put('/:id', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
+  console.log(`check if ID exists`+req.params.id)
   Act
-    .findByIdAndRemove(req.params.id)
+    .findOneAndRemove({
+      _id: req.params.id,
+      user: req.user.id
+    })
     .then(() => {
       console.log(`Deleted act with id \`${req.params.id}\``);
       res.status(204).end();

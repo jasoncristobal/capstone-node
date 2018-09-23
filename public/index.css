@@ -5,7 +5,7 @@
 
 body {
   padding-top: 90px;
-  background-color: #0071bc;
+  background-color: #874c62;
 }
 
 body, .tagline {
@@ -45,11 +45,22 @@ input {
   width: 180px;
 }
 
+.error {
+  color:yellow;
+}
+
+.button-create {
+  padding: 6px 19px 10px 19px;
+}
+
+.button-login {
+  padding: 6px 65px 10px 65px;
+}
+
 .button {
-  background-color: #008deb;
-  border: 0;
+  background-color: #874c62;
+  border: 0.1em solid #ac778a;
   color: white;
-  padding: 10px 15px 15px 15px;
   text-align: center;
   display: inline-block;
   font-size: 20px;
@@ -58,7 +69,7 @@ input {
 }
 
 .button:hover {
-  background-color: #29abe2;
+  background-color: #ac778a;
 }
 
 form {
@@ -79,8 +90,8 @@ a.dark:hover {
   body {
     background: 
     linear-gradient(
-      rgba(0, 113, 188, 0.65), 
-      rgba(0, 113, 188, 0.65) 
+      rgba(135,76,98, 0.7), 
+      rgba(135,76,98, 0.7) 
     ),
     url(https://wecleantoperfection.com/wp-content/uploads/2018/02/crowd-of-people-walking-on-city-street-sidewalk-4k-slow-motion_eyvkajbe__F0000.png);
     background-repeat: no-repeat;

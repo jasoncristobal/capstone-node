@@ -22,7 +22,7 @@ describe('Auth endpoints', function () {
   const lastName = 'User';
 
   before(function () {
-    return runServer();
+    return runServer(global.DATABASE_URL);
   });
 
   after(function () {

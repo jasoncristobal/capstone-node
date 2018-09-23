@@ -16,20 +16,18 @@
     <h1>Kindly</h1>
   </header>
   <main role="main">
-    <p class="tagline">Keep track of your acts of kindness</p>
+    <p class="tagline">A passion for compassion</p>
     <nav role="navigation">
       <form role="form" id="login-form">
         <fieldset>
-          <label>
-            <input type="text" class="user" placeholder="Enter username" name="username">
-          </label>
+          <label for="username"></label>
+            <input aria-label="username" type="text" id="username" class="user" placeholder="Enter username" name="username">
         </fieldset>
         <fieldset>
-          <label>
-            <input type="password" class="pw" placeholder="Enter password" name="password">
-          </label>
+          <label for="password"></label>
+            <input aria-label="password" type="password" id="password" class="pw" placeholder="Enter password" name="password">
         </fieldset>
-        <button aria-label="submit" class="button">Login</button>
+        <button aria-label="login" class="button button-login">Login</button>
       </form>
       <a class="dark" href="#" id="registerLink">No account? Create one</a>
     </nav>
