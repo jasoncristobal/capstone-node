@@ -13,7 +13,7 @@ body {
   font-size: 23px;
 }
 
-main, h1 {
+main, h1, .signed-up {
   color: white;
 }
 

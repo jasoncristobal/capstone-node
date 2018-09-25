@@ -21,7 +21,11 @@ $('form').submit(event=>{
     const startOfPasswordKey = settings.data.search("\"password\":")
     const endOfString = settings.data.lastIndexOf("}")
     $.ajax(settings).done(function (response) {
-	    window.location="dashboard.html";
+        $('.error').html('')
+        $('nav').html(`
+            <p class="signed-up">Account created!</p>
+            <p><a href="/" id="#registerLink" class="signed-up">Please sign in here</a></p>
+        `)
     }).fail(function (err) { 
         if (emptyUsername === true || emptyPassword === true) { // if one or both are empty
             $('.error').html('Please complete both fields')
@@ -37,6 +41,6 @@ $('form').submit(event=>{
     });
 })
 
-$('#registerLink').click(event=>{
+$('main').on('click', '#registerLink', event=> {
     window.location="index.html";
 })
