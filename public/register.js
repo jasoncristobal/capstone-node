@@ -22,13 +22,14 @@ $('form').submit(event=>{
     const endOfString = settings.data.lastIndexOf("}")
     $.ajax(settings).done(function (response) {
 	    window.location="dashboard.html";
-    }).fail(function (err) { // to handle request errors ( 404, 400, 500 ... )
+    }).fail(function (err) { 
         if (emptyUsername === true || emptyPassword === true) { // if one or both are empty
             $('.error').html('Please complete both fields')
         } else if (endOfString-startOfPasswordKey < 21) { 
-            /* If the password has the minimum required # of characters, then 21+ is the 
-            number of characters between the start of the password key and the end of 
-            the string. Less than 21 means the password is less than the required minimum. */
+            /* If the password has the minimum required # of characters, 
+            then 21+ is the # of characters between the start of the password 
+            key (line 21) and the end of the string (line 22). Less than 21 
+            means the password length is less than the required minimum. */
             $('.error').html('Password must be at least 8 characters')
         } else {
             $('.error').html('Username already taken. Choose another.')

@@ -1,16 +1,68 @@
+// Various variables, followed by event listeners 
+
+
+// This const is used by the GET and PUT requests
+const settingsForGETrequest = {
+    "async": true,
+    "crossDomain": true,
+    "url": `/api/acts/`,
+    "method": "GET",
+    "headers": {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache",
+        "authorization": "Bearer " + localStorage.authToken
+    }
+}
+
+// This appears in the screens for Create, Read, and Update
+const dropDownMenuForRatings = {
+    "examples": `
+    <div class="hide show"><span class="examples">Rating Examples: </span>
+    <div><span class="drop-down">1 - Holding a door open for someone. Welcoming a new co-worker.</span></div>
+    <div><span class="drop-down">2 - Complimenting a stranger. Giving your seat to another passenger.</span></div>
+    <div><span class="drop-down">3 - Offering spare change to a stranger. Giving directions to someone lost.</span></div>
+    <div><span class="drop-down">4 - Lending a friend your vehicle. Buying someone a birthday present.</span></div> 
+    <div><span class="drop-down">5 - Donating old possessions. Helping an old lady down the stairs.</span></div>
+    <div><span class="drop-down">6 - Babysitting for free. Inviting somebody over for dinner.</span></div>
+    <div><span class="drop-down">7 - Manual labor for free. Calling 9-1-1 to report a house fire nearby.</span></div>
+    <div><span class="drop-down">8 - Blood donation. Defending a stranger being harassed.</span></div>
+    <div><span class="drop-down">9 - Adopting a pet. Saving somebody’s life with CPR.</span></div>
+    <div><span class="drop-down">10 - Risking your life to save another life. Adopting a baby. Organ donation.</span></div></div>`,
+    "selections": `
+    <option value=1>1</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>`
+}
+
+// This is for the "expand" link for the drop-down menu above
+$('main').on('click', '.expand', (function () {
+        // Showing and hiding the drop-down menu
+        $(this).toggleClass("active");
+        $('.show').toggleClass("hide");
+        if ($(this).hasClass("active")) {
+            $(this).text("Hide Examples");
+        } else {
+            $(this).text("Show Examples");
+        }
+    })
+);
+
+// This is used by the "update" and "cancel" event listeners
+let IDnumForSelectedItem = null;
+
+
+// This loads the main dashboard screen
 $(function () {
     displayActs();
 })
 
-/*
-function getActs(callbackFn) {
-    // we use a `setTimeout` to make this asynchronous
-    // as it would be with a real AJAX call.
-    setTimeout(function(){ callbackFn(MOCK_DATA)}, 1);
-}
-*/
-
-// This loads the main dashboard screen
 function displayActs() {
     $('main').html(`
         <div class="col-12 create">
@@ -79,7 +131,6 @@ $('body').on('submit', '#update', function (event) {
 // Save button on "create" screen
 $('body').on('submit', '#create', function (event) {
     event.preventDefault();
-    console.log('Button clicked')
     const title = $(event.target).find('#title').val()
     const date = $(event.target).find('#date').val()
     const location = $(event.target).find('#location').val()
@@ -113,25 +164,16 @@ $('body').on('click', '#createButton', function (event) {
     $('main').html(`
         <section class="col-12">
         <form id="create">
-        <p><span class="info-headers">Title: </span><input type="text" required id="title" placeholder="Describe what you did in 6 words or less" name="Name"></p> 
+        <p><span class="info-headers">Title: </span><input type="text" required id="title" placeholder="Describe what you did in 2-6 words" name="Name"></p> 
         <p><span class="info-headers">Where: </span><input type="text" required id="location" placeholder="Location or place you did it" name="Location"></p> 
         <p><span class="info-headers">When: </span><input type="date" required id="date" placeholder="Date you did it" name="Date"></p>
         <p><span class="info-headers">Kindness Rating: </span> 
             <select id="kindnessRating" name="kindnessRating" required>
                 <option class="unselected" value="">Rate</option>
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-                <option value=6>6</option>
-                <option value=7>7</option>
-                <option value=8>8</option>
-                <option value=9>9</option>
-                <option value=10>10</option>
+                ${dropDownMenuForRatings.selections}
             </select>
         <a href="#" class="dark expand">Expand to see how to rate</a></p>
-        ${dropDownMenuForRatings.menu}
+        ${dropDownMenuForRatings.examples}
         <p><span class="info-headers">What happened:</span> <textarea type="text" required id="description" placeholder="Tell the whole story" name="Description"></textarea></p>
         <div class="edit-buttons">
             <button id="cancelButton" class="button buttonCancelUpdateSave">Cancel</button>
@@ -142,44 +184,11 @@ $('body').on('click', '#createButton', function (event) {
     `)
 });
 
-// This const is used by the GET and PUT requests
-const settingsForGETrequest = {
-    "async": true,
-    "crossDomain": true,
-    "url": `/api/acts/`,
-    "method": "GET",
-    "headers": {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-        "authorization": "Bearer " + localStorage.authToken
-    }
-}
-
-// This appears in the screens for Create, Read, and Update
-const dropDownMenuForRatings = {
-    "menu": `<div class="hide show"><span class="examples">Rating Examples: </span>
-    <div><span class="drop-down">1 - Holding a door open for someone. Welcoming a new co-worker.</span></div>
-    <div><span class="drop-down">2 - Complimenting a stranger. Giving your seat to another passenger.</span></div>
-    <div><span class="drop-down">3 - Offering spare change to a stranger. Giving directions to someone lost.</span></div>
-    <div><span class="drop-down">4 - Lending a friend your vehicle. Buying someone a birthday present.</span></div> 
-    <div><span class="drop-down">5 - Donating old possessions. Helping an old lady down the stairs.</span></div>
-    <div><span class="drop-down">6 - Babysitting for free. Inviting somebody over for dinner.</span></div>
-    <div><span class="drop-down">7 - Manual labor for free. Calling 9-1-1 to report a house fire nearby.</span></div>
-    <div><span class="drop-down">8 - Blood donation. Defending a stranger being harassed.</span></div>
-    <div><span class="drop-down">9 - Adopting a pet. Saving somebody’s life with CPR.</span></div>
-    <div><span class="drop-down">10 - Risking your life to save another life. Adopting a baby. Organ donation.</span></div></div>`
-}
-
-
-// This is used by the "update" and "cancel" event listeners
-let IDnumForSelectedItem = null;
-
-// Read act
+// Read button (i.e. clicking on an item on the dashboard)
 $('body').on('click', '#readButton', function (event) {
     const index = $(this).attr("data-id")
-    $('main').addClass('main-for-read-act')
-    $('h1').addClass('h1-for-read-act')
     $('h1').html(`Read Act`)
+    $('h1').addClass('h1-for-read-act')
     $('h2').html(``)
     $('.blurb').html('')
     $.ajax(settingsForGETrequest).done(function (response) {
@@ -191,7 +200,7 @@ $('body').on('click', '#readButton', function (event) {
             <p><span class="info-headers">When: </span>${response[index].date.substring(0, 10)}</p>
             <p><span class="info-headers">Kindness Rating: </span>${response[index].kindnessRating}
             <a class="dark expand">Expand for info</a></p>
-            ${dropDownMenuForRatings.menu}
+            ${dropDownMenuForRatings.examples}
             <p><span class="info-headers">What happened:</span> ${response[index].description}</p>
             <div class="edit-buttons">
                 <button id="cancelButton" class="button buttonCancelUpdateSave">Cancel</button>
@@ -200,6 +209,7 @@ $('body').on('click', '#readButton', function (event) {
             </div>
             </section> 
         `)
+        $('main').addClass('main-for-read-act')
     });
 });
 
@@ -221,19 +231,10 @@ $('body').on('click', '#updateButton', function (event) {
             <p><span class="info-headers">Kindness Rating: </span>   
                 <select id="kindnessRating" name="kindnessRating" required>
                     <option class="unselected" value="${response[index].kindnessRating}">${response[index].kindnessRating} (Current)</option>
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                    <option value=6>6</option>
-                    <option value=7>7</option>
-                    <option value=8>8</option>
-                    <option value=9>9</option>
-                    <option value=10>10</option>
+                    ${dropDownMenuForRatings.selections}
                 </select>
             <a class="dark expand">Expand to see how to rate</a></p>
-            ${dropDownMenuForRatings.menu}
+            ${dropDownMenuForRatings.examples}
             <p><span class="info-headers">What happened:</span> <textarea id="description" rows="3" cols="80" name="Description">${response[index].description}</textarea></p>
             <div class="edit-buttons">
                 <button id="cancelButton" class="button buttonCancelUpdateSave">Cancel</button>
@@ -246,7 +247,7 @@ $('body').on('click', '#updateButton', function (event) {
     });
 });
 
-// Delete act
+// Delete button
 $('body').on('click', '#deleteButton', function (event) {
     if (confirm('No act of kindness is too small. Still want to delete this?')) {
         const settings = {
@@ -267,20 +268,6 @@ $('body').on('click', '#deleteButton', function (event) {
 
 // Logout button
 $('body').on('click', '#logoutButton', function (event) {
-    localStorage.clear(); window.location = '/'
-}
-);
-
-// This is for the "expand" link on the read screen
-$('main').on('click', '.expand', (function () {
-
-    $(this).toggleClass("active");
-    $('.show').toggleClass("hide");
-
-    if ($(this).hasClass("active")) {
-        $(this).text("Hide Examples");
-    } else {
-        $(this).text("Show Examples");
+        localStorage.clear(); window.location = '/'
     }
-
-}));
+);

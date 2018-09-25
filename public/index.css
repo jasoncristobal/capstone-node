@@ -6,10 +6,11 @@
 body {
   padding-top: 90px;
   background-color: #874c62;
+  font-size: 23px;
 }
 
-body, .tagline {
-  font-size: 20px;
+.tagline {
+  font-size: 23px;
 }
 
 main, h1 {
@@ -19,10 +20,6 @@ main, h1 {
 h1, .tagline {
   font-family: 'Kalam', cursive;
   
-}
-
-#registerLink {
-  font-size: 15px;
 }
 
 .tagline {
@@ -47,6 +44,14 @@ input {
 
 .error {
   color:yellow;
+}
+
+#registerLink, .demo {
+  font-size: 15px;
+}
+
+.demo {
+  font-style: oblique;
 }
 
 .button-create {
@@ -97,15 +102,10 @@ a.dark:hover {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-
   }
 
   h1 {
     font-size: 110px;
-  }
-
-  .tagline {
-    font-size: 22px;
   }
 
 }

@@ -3,7 +3,7 @@
 }
    
 body {
-  padding: 20px 0px 50px 0px;
+  padding: 20px 0px 10px 0px;
   font-size: 20px;
 }
 
@@ -12,12 +12,12 @@ main {
 }
 
 .main-for-read-act {
-  border: 2px solid #874c62;
+  background-color: #eddbcd;
   border-radius: 20px;
   color: black;
-  width: 84%;
+  width: 95%;
   text-align: left;
-  padding: 0px 30px 30px 30px;
+  padding: 0px 20px 30px 20px;
 }
 
 nav {
@@ -25,8 +25,8 @@ nav {
 }
 
 body, nav, header, .blurb, h3, p.kindness-rating {
-text-align: center;
-margin: 0 auto;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .blurb {
@@ -34,7 +34,7 @@ margin: 0 auto;
   font-size: 16px;
 }
 
-.blurb, p.kindness-rating, .confirm-date {
+.blurb, p.kindness-rating {
   font-style: oblique;
 }
 
@@ -58,7 +58,7 @@ a.nav {
 
 h1 {
   font-size: 42px;
-  padding-top: 25px;
+  padding-top: 10px;
   color: #874c62;
 }
 
@@ -76,8 +76,10 @@ h2, .logout, .drop-down, .expand, .examples {
 }
 
 h4 {
-  line-height: 120%;
+  line-height: 30%;
+  padding-bottom: 10px;
   font-size: 30px;
+  color: #874c62;
 }
 
 .info-headers, .examples, .subtitle {
@@ -92,19 +94,30 @@ h4 {
   display: none;
 }
 
+form {
+  padding-top: 15px;
+}
+
 input[name=Name] {
-width: 75%;
+  width: 75%;
 }
 
 input[name=Location] {
-width: 72.3%;
+  width: 72.3%;
 }
 
 input[name=Date] {
-width: 30%;
+  width: 30%;
 }
 
 textarea {
+  width: 100%;
+  min-height: 90px;
+}
+
+.edit-buttons {
+  text-align: right;
+  float: right;
   width: 100%;
 }
 
@@ -117,7 +130,7 @@ button {
   background-color: #c98474;
   border: 0;
   padding: 10px 15px 12px 15px;
-  margin: 4px 2px;
+  margin: 4px 0px;
   cursor: pointer;
 }
 
@@ -137,14 +150,6 @@ button {
   background-color: #fc464d;   
 }
 
-.green-button {
-  background-color: #7ac943;
-}
-
-.green-button:hover {  
-  background-color: #8edb57;
-}
-
 h3 {
   font-size: 22px;
   font-weight: normal;
@@ -161,17 +166,11 @@ p.kindness-rating {
   padding: 0px 10px 0px 10px; 
 }
 
-.edit-buttons {
-    padding-top: 15px;
-    text-align: right;
-    float: right;
-}
-
 a {
   text-decoration: none;
 }
 
-a.nav {
+a.nav, .info-headers, .examples {
   color: #874c62;
 }
 
@@ -190,6 +189,27 @@ a.dark:hover {
 
 
 /* Responsive-related*/
+
+@media only screen and (min-width: 700px) {
+  
+  body {
+    padding: 20px 0px 50px 0px;
+  }
+  
+  .main-for-read-act {
+    width: 84%;
+    padding: 0px 30px 30px 30px;
+  }
+
+  h4 {
+    line-height: 120%;
+  }
+
+  .button {
+    margin: 4px 2px;
+  }
+  
+}
 
 .card-image {
   width: 100%;

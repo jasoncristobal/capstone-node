@@ -1,12 +1,10 @@
 $('#login-form').submit(event => {
-    console.log('Login button clicked');
     event.preventDefault();
     const username = $(event.currentTarget).find('.user').val();// username input
     const password = $(event.currentTarget).find('.pw').val();// password input
-    if (!username || !password) {
+    if (!username || !password) { // if either one doesn't exist
         $('.error').html('<p>Please complete both fields</p>')
     }
-    console.log('Passed If statement');
     const settings = {
         "async": true,
         "crossDomain": true,
@@ -22,16 +20,13 @@ $('#login-form').submit(event => {
     }
     const emptyUsername = settings.data.includes("\"username\":\"\"");
     const emptyPassword = settings.data.includes("\"password\":\"\"");
-    console.log(emptyUsername+' and '+emptyPassword)
     $.ajax(settings).done(function (response) {
         localStorage.authToken = response.authToken;
         window.location = "dashboard.html";
-    }).fail(function (err) { // to handle request errors ( 404, 400, 500 ... )
-        if (emptyUsername === true || emptyPassword === true) { // one or both are empty
-            console.log('1')
+    }).fail(function (err) { 
+        if (emptyUsername === true || emptyPassword === true) { // if one or both fieldsare empty
             $('.error').html('Please complete both fields')
-        } else { // neither are empty
-            console.log('2')
+        } else { // if both fields are filled out
             $('.error').html('Username and/or Password Incorrect')
         } 
     });
@@ -39,5 +34,4 @@ $('#login-form').submit(event => {
 
 $('#registerLink').click(event => {
     window.location = "register.html";
-    // if username exists, return error msg "already exists"
 })
