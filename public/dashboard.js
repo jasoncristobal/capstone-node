@@ -12,16 +12,15 @@ function getActs(callbackFn) {
 
 // This loads the main dashboard screen
 function displayActs() {
-    $('main').html('<nav role="navigation"><button id="createButton">Create</button></nav>');
+    $('main').html(`
+        <div class="col-12 create">
+            <button id="createButton" class="button buttonCreate">Create New Act</button>
+        </div>
+    `)
     $.ajax(settingsForGETrequest).done(function (response) {
-        $('main').html(`
-            <div class="col-12 create">
-                <button id="createButton" class="button buttonCreate">Create New Act</button>
-            </div>
-        `)
         for (index in response) {
             $('main').append(`
-                <div class="col-3">
+                <button class="col-3 card-button">
                     <a href="#" id="readButton" data-id="${index}" class="kindness-rating">
                         <div class="card">
                             <div class="card-content">
@@ -30,7 +29,7 @@ function displayActs() {
                             </div>
                         </div>
                     </a>
-                </div>
+                </button>
             `);
         }
     });
@@ -74,7 +73,7 @@ $('body').on('submit', '#update', function (event) {
     }
     $.ajax(settings).done(function (response) {
     });
-    displayActs();
+    window.location = "dashboard.html"
 });
 
 // Save button on "create" screen
@@ -100,8 +99,7 @@ $('body').on('submit', '#create', function (event) {
         "data": "{\"title\": \"" + title + "\", \"location\": \"" + location + "\", \"date\": \"" + date + "\", \"description\": \"" + description + "\", \"kindnessRating\": \"" + kindnessRating + "\"  }"
     }
     $.ajax(settings).done(function (response) {
-        console.log(response)
-        displayActs();
+        window.location = "dashboard.html"
     });
 });
 
@@ -219,11 +217,10 @@ $('body').on('click', '#updateButton', function (event) {
             <form id="update">
             <p><span class="info-headers">Title: </span><input value="${response[index].title}" required type="text" id="title" name="Name"></p> 
             <p><span class="info-headers">Where: </span><input value="${response[index].location}" required type="text" id="location" name="Location"></p> 
-            <p><span class="info-headers">When: </span> ${response[index].date.substring(0, 10)} </p>
-            <p><span class="info-headers confirm-date">Confirm or Change Date (required):</span> <input required type="date" id="date" name="Date"></p>
+            <p><span class="info-headers">When: </span> <input value="${response[index].date.substring(0, 10)}" required type="date" id="date" name="Date"></p>
             <p><span class="info-headers">Kindness Rating: </span>   
                 <select id="kindnessRating" name="kindnessRating" required>
-                    <option class="unselected" value="${response[index].kindnessRating}">${response[index].kindnessRating}</option>
+                    <option class="unselected" value="${response[index].kindnessRating}">${response[index].kindnessRating} (Current)</option>
                     <option value=1>1</option>
                     <option value=2>2</option>
                     <option value=3>3</option>

@@ -38,10 +38,6 @@ margin: 0 auto;
   font-style: oblique;
 }
 
-.subtitle {
-  font-weight: bold;
-}
-
 .logout {
   float: right;
   padding-right: 20px;
@@ -70,7 +66,7 @@ h1, h4 {
   -webkit-margin-after: 0em;
 }
 
-h2, h3 {
+h2 {
   font-weight: normal;
   color: #874c62;
 }
@@ -84,11 +80,7 @@ h4 {
   font-size: 30px;
 }
 
-h3, p.kindness-rating {
-  color: white;
-}
-
-.info-headers, .examples {
+.info-headers, .examples, .subtitle {
   font-weight: bold;
 }
 
@@ -122,21 +114,18 @@ button {
 }
 
 .button {
+  background-color: #c98474;
   border: 0;
   padding: 10px 15px 12px 15px;
   margin: 4px 2px;
   cursor: pointer;
 }
 
-.buttonCreate {
-  background-color: #c98474;
-}
-
 .buttonCancelUpdateSave {
   background-color: #874c62;
 }
 
-.button:hover {
+.button:hover, .card-button:hover {
   background-color: #ac778a;
 }
 
@@ -158,6 +147,8 @@ button {
 
 h3 {
   font-size: 22px;
+  font-weight: normal;
+  color: white;
   width: 100%; 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -166,6 +157,7 @@ h3 {
 
 p.kindness-rating {
   font-size: 16px;
+  color: white;
   padding: 0px 10px 0px 10px; 
 }
 
@@ -193,16 +185,11 @@ a.dark:link, a.dark:visited, .expand {
 }
 
 a.dark:hover {
-  color: #29abe2;
+  color: #c98474;
 }
 
 
 /* Responsive-related*/
-
-.card {
-  background-color: #874c62;
-  margin-bottom: 20px;
-}
 
 .card-image {
   width: 100%;
@@ -210,6 +197,12 @@ a.dark:hover {
 
 .card-content {
   padding: 15px 0px 20px 0px;
+}
+.card-button {
+  background-color: #874c62;
+  cursor: pointer;
+  border: 5px solid white;
+  border-radius: 20px;
 }
 
 .card-content h3 {
