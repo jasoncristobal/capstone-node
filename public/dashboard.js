@@ -197,7 +197,7 @@ $('body').on('click', '#readButton', function (event) {
             <section class="col-12">
             <h4>${response[index].title}</h4>
             <p><span class="info-headers">Where: </span>${response[index].location}</p> 
-            <p><span class="info-headers">When: </span>${response[index].date.substring(0, 10)}</p>
+            <p><span class="info-headers">When: </span>${response[index].date.substring(5, 7)}/${response[index].date.substring(8, 10)}/${response[index].date.substring(0, 4)}</p>
             <p><span class="info-headers">Kindness Rating: </span>${response[index].kindnessRating}
             <a class="dark expand">Expand for info</a></p>
             ${dropDownMenuForRatings.examples}
